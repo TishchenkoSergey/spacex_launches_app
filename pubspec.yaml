@@ -15,6 +15,12 @@ dependencies:
   get_it: ^8.2.0
   injectable: ^2.5.1
 
+  domain:
+    path: ./packages/domain
+
+  data:
+    path: ./packages/data
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -26,3 +32,4 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
