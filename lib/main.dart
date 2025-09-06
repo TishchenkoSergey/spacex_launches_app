@@ -3,6 +3,6 @@ import 'package:spacex_launches_app/bootstrap.dart';
 
 void main() {
   bootstrap((result) {
-    return App(serviceLocator: result.serviceLocator);
+    return App(serviceLocator: result.serviceLocator, themeSettings: result.themeSettings);
   });
 }

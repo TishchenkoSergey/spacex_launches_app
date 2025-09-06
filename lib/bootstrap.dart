@@ -1,10 +1,14 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
+
 import 'package:bloc/bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import 'package:flutter/widgets.dart';
+import 'package:spacex_launches_app/theme/theme.dart';
+
+import 'assets/assets.gen.dart';
 
 import 'di/di.dart';
 
@@ -25,9 +29,10 @@ class AppBlocObserver extends BlocObserver {
 }
 
 class BootstrapResult {
-  BootstrapResult(this.serviceLocator);
+  BootstrapResult(this.serviceLocator, this.themeSettings,);
 
   final GetIt serviceLocator;
+  final ThemeData themeSettings;
 }
 
 Future<void> bootstrap(FutureOr<Widget> Function(BootstrapResult result) builder) async {
@@ -41,10 +46,10 @@ Future<void> bootstrap(FutureOr<Widget> Function(BootstrapResult result) builder
 
   final serviceLocator = await configureDependencies();
 
-  final bootstrapResult = BootstrapResult(serviceLocator);
+  final themeConfig = await ThemeConfig.loadFromAsset(Assets.themes.original);
+  final theme = createAppTheme(themeConfig);
 
-  WidgetsFlutterBinding.ensureInitialized();
-
+  final bootstrapResult = BootstrapResult(serviceLocator, theme);
 
   runApp(await builder(bootstrapResult));
 }
