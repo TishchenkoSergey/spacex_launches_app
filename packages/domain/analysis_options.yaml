@@ -1,4 +1,17 @@
-include: package:flutter_lints/flutter.yaml
+include: package:very_good_analysis/analysis_options.yaml
+linter:
+  rules:
+    public_member_api_docs: false
+    sort_pub_dependencies: false
+    always_use_package_imports: false
+    directives_ordering: false
+    lines_longer_than_80_chars: false
+    one_member_abstracts: false
+    avoid_positional_boolean_parameters: false
+    require_trailing_commas: false
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+analyzer:
+  errors:
+    document_ignores: ignore
+  exclude:
+    - "**/*.g.dart"
