@@ -8,20 +8,29 @@ import 'package:spacex_launches_app/features/features.dart';
 
 import 'app_route_enum.dart';
 
+/// Manages the application's route configuration using [GoRouter].
 class AppRoute {
+  /// Creates an [AppRoute] instance with the given [serviceLocator].
   AppRoute({required this.serviceLocator});
 
+  /// The service locator used for dependency injection.
   final GetIt serviceLocator;
 
+  /// Builds and returns the application's [GoRouter] instance.
   GoRouter build(BuildContext context) {
-    return GoRouter(routes: [_buildCameraPage()], initialLocation: '/${Routes.launchesScreen.name}');
+    return GoRouter(routes: [_buildLaunchesPage()], initialLocation: '/${Routes.launchesScreen.name}');
   }
 
-  GoRoute _buildCameraPage() {
+  GoRoute _buildLaunchesPage() {
     return GoRoute(
       name: Routes.launchesScreen.name,
       path: '/${Routes.launchesScreen.name}',
-      builder: (context, state) => LaunchesScreen()
+      pageBuilder: (context, state) => CupertinoPage(
+        child: BlocProvider(
+          create: (context) => LaunchesCubit(serviceLocator.get(), serviceLocator.get()),
+          child: const LaunchesScreen(),
+        ),
+      ),
     );
   }
 }
