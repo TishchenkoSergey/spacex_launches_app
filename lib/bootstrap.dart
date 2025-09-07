@@ -12,7 +12,9 @@ import 'assets/assets.gen.dart';
 
 import 'di/di.dart';
 
+/// Custom [BlocObserver] that logs changes and errors in blocs.
 class AppBlocObserver extends BlocObserver {
+  /// Creates an instance of [AppBlocObserver].
   const AppBlocObserver();
 
   @override
@@ -28,13 +30,17 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
+/// Holds initialized services for the app.
 class BootstrapResult {
+  /// Dependency injection container.
   BootstrapResult(this.serviceLocator, this.themeSettings,);
 
+  /// Creates a result with the given [serviceLocator], [themeSettings].
   final GetIt serviceLocator;
   final ThemeData themeSettings;
 }
 
+/// Sets up error handling, BLoC observer, DI, and runs the app.
 Future<void> bootstrap(FutureOr<Widget> Function(BootstrapResult result) builder) async {
   WidgetsFlutterBinding.ensureInitialized();
 
