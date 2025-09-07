@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -56,6 +57,13 @@ Future<void> bootstrap(FutureOr<Widget> Function(BootstrapResult result) builder
   final theme = createAppTheme(themeConfig);
 
   final bootstrapResult = BootstrapResult(serviceLocator, theme);
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   runApp(await builder(bootstrapResult));
 }
