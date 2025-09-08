@@ -4,10 +4,15 @@ import 'package:get_it/get_it.dart';
 
 import 'package:spacex_launches_app/app/route/route.dart';
 
+/// Application [App]
 class App extends StatefulWidget {
-  const App({required this.serviceLocator, super.key});
+  /// Application [App]
+  const App({   required this.themeSettings, required this.serviceLocator, super.key});
 
+  /// The service locator used for dependency injection.
   final GetIt serviceLocator;
+  /// The [ThemeData] used for dependency injection.
+  final ThemeData  themeSettings;
 
   @override
   State<App> createState() => _AppState();
@@ -19,10 +24,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(backgroundColor: Theme.of(context).colorScheme.inversePrimary),
-        useMaterial3: true,
-      ),
+      theme: widget.themeSettings,
       routeInformationProvider: route.routeInformationProvider,
       routeInformationParser: route.routeInformationParser,
       routerDelegate: route.routerDelegate,

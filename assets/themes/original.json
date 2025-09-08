@@ -1,0 +1,11 @@
+{
+  "lightColorSchemeOverride": {
+    "primary": "#000000",
+    "onPrimary": "#FFFFFF",
+    "secondary": "#1C1C1C",
+    "secondaryContainer": "#C5C5C5",
+    "error": "#C2392E",
+    "onSurface": "#BAFC54"
+  },
+  "fontFamily": "Inter"
+}
