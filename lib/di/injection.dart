@@ -12,7 +12,10 @@ import 'injection.config.dart';
     ExternalModule(DomainPackageModule),
   ],
 )
+
+/// Initializes and configures di using `GetIt` and `injectable`.
 Future<GetIt> configureDependencies() async => GetIt.asNewInstance().init();
 
+/// A module to register external dependencies for injection.
 @module
 abstract class RegisterModule {}
